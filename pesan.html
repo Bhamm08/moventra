@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pesan Tiket – Moventra</title>
+<meta name="description" content="Pesan tiket pesawat, kereta api, bus, dan kapal ferry dalam satu tempat. Bandingkan harga dan berangkat dengan tenang.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230F9D8A'/%3E%3Cpath d='M14 46V22l18 18 18-18v14' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='46' r='5' fill='%23FF6B4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="book">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+    <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+  </symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="logo" aria-label="Moventra beranda">
+      <svg viewBox="0 0 270 64" height="40" role="img" aria-label="Moventra">
+        <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+        <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+        <text x="80" y="43" font-family="'Plus Jakarta Sans','Segoe UI',Arial,sans-serif" font-size="34" font-weight="800" letter-spacing="-1" fill="#14232B">Moventra</text>
+      </svg>
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="index.html">Beranda</a>
+      <a href="pesan.html" class="on">Pesan Tiket</a>
+      <a href="promo.html">Promo</a>
+      <a href="pesanan.html">Pesanan Saya</a>
+      <a href="bantuan.html">Bantuan</a>
+    </nav>
+    <div class="nav-act">
+      <a class="btn coral sm" href="pesan.html">Pesan tiket</a>
+      <button class="btn ghost sm" id="btnLogin">Masuk</button>
+      <button class="btn sm" id="btnRegister">Daftar</button>
+      <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="view" id="view-results">
+  <div class="sumbar">
+    <div class="wrap sumbar-in">
+      <div><h1 id="resTitle">Jakarta → Yogyakarta</h1><p id="resMeta"></p></div>
+      <button class="btn ghost sm" id="editSearch" type="button" aria-expanded="false">Ubah pencarian</button>
+    </div>
+    <div class="wrap" id="emptyBox"><h1 class="pg-t">Mau pergi ke mana?</h1><p>Pilih jenis transportasi, isi kota asal dan tujuan, lalu pilih tanggal.</p></div>
+    <div class="wrap" id="searchPanel" hidden><form class="search" id="searchForm" autocomplete="off" novalidate>
+        <div class="pills fm" id="formMode" role="group" aria-label="Jenis transportasi"><button type="button" data-m="all">Semua</button><button type="button" data-m="flight">Pesawat</button><button type="button" data-m="train">Kereta</button><button type="button" data-m="bus">Bus</button><button type="button" data-m="ferry">Kapal</button></div>
+        <div class="fields">
+          <div class="field"><label for="fFrom"><span>Dari</span></label><input id="fFrom" placeholder="Pilih kota asal" role="combobox" aria-controls="sgFrom"><div class="suggest" id="sgFrom" hidden></div></div>
+          <button type="button" class="swap" id="swapBtn" aria-label="Tukar asal dan tujuan">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
+          </button>
+          <div class="field"><label for="fTo"><span>Ke</span></label><input id="fTo" placeholder="Pilih kota tujuan" role="combobox" aria-controls="sgTo"><div class="suggest" id="sgTo" hidden></div></div>
+          <div class="field narrow"><span>Tanggal pergi</span><button type="button" class="datebtn empty" id="dateBtn" aria-haspopup="dialog">Pilih tanggal</button><input type="hidden" id="fDate"><div class="cal" id="calBox" role="dialog" aria-label="Pilih tanggal" hidden></div></div>
+          <label class="field narrow"><span>Penumpang</span>
+            <select id="fPax"><option value="1">1 dewasa</option><option value="2">2 dewasa</option><option value="3">3 dewasa</option><option value="4">4 dewasa</option><option value="5">5 dewasa</option></select>
+          </label>
+          <button class="btn lg go" type="submit">Cari tiket</button>
+        </div>
+        <p class="form-err" id="formErr" role="alert" hidden></p>
+        
+      </form></div>
+    <div class="wrap"><div class="dates" id="dateStrip" role="tablist" aria-label="Pilih tanggal"></div></div>
+  </div>
+  <section class="wrap sec" id="emptyHow"><div class="sec-head"><h2>Belum tahu mau ke mana?</h2><p>Mulai dari rute yang paling sering dicari.</p></div><div class="route-grid"></div></section>
+  <div class="wrap res-grid">
+    <aside class="filters" id="filters">
+      <div class="f-head"><h2>Filter tiket</h2><button class="link" id="resetFilter" type="button">Hapus semua</button></div>
+      <label class="f-search"><span>Cari kode atau operator</span><input id="qSearch" type="search" placeholder="mis. Citilink atau QG"></label>
+      <fieldset><legend>Jenis</legend><div class="pills" id="fMode">
+        <button type="button" data-m="all">Semua</button><button type="button" data-m="flight">Pesawat</button><button type="button" data-m="train">Kereta</button><button type="button" data-m="bus">Bus</button><button type="button" data-m="ferry">Kapal</button></div></fieldset>
+      <fieldset><legend>Harga maksimum <output id="priceOut"></output></legend><input type="range" id="fPrice" aria-label="Harga maksimum"></fieldset>
+      <fieldset><legend>Waktu berangkat</legend><div class="chips" id="fTime">
+        <button type="button" data-t="0">Pagi<small>&lt; 10:00</small></button><button type="button" data-t="1">Siang<small>10–15</small></button>
+        <button type="button" data-t="2">Sore<small>15–19</small></button><button type="button" data-t="3">Malam<small>≥ 19:00</small></button></div></fieldset>
+      <fieldset><legend>Operator</legend><div id="fOps" class="checks"></div></fieldset>
+      <button class="btn ghost full close-f" id="closeFilter" type="button">Lihat hasil</button>
+    </aside>
+    <div class="res-main">
+      <div class="res-bar">
+        <div class="pills" id="sortPills" role="group" aria-label="Urutkan">
+          <button type="button" data-s="price">Termurah</button><button type="button" data-s="priceDesc">Termahal</button><button type="button" data-s="dur">Tercepat</button><button type="button" data-s="dep">Berangkat awal</button><button type="button" data-s="depDesc">Berangkat akhir</button>
+        </div>
+        <div class="sortrow"><p id="resCount" aria-live="polite"></p><button class="btn ghost sm open-f" id="openFilter" type="button">Filter</button></div>
+      </div>
+      <div id="ticketList" class="tickets"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a href="index.html" class="logo"><svg width="36" height="36"><use href="#mark"/></svg><b>Moventra</b></a>
+      <p>Platform pemesanan tiket pesawat, kereta api, bus, dan kapal ferry untuk perjalanan di seluruh Indonesia.</p>
+    </div>
+    <div><h4>Produk</h4><a href="pesan.html">Pesan tiket</a><a href="promo.html">Promo</a><a href="pesanan.html">Pesanan saya</a></div>
+    <div><h4>Bantuan</h4><a href="bantuan.html">Pusat bantuan</a><a href="bantuan.html">Cara memesan</a><a href="pesanan.html">Cek pesanan</a></div>
+    <div><h4>Pembayaran</h4><p class="muted">QRIS, BCA, Mandiri, BNI, BRI, GoPay, OVO, Dana, Visa, Mastercard.</p></div>
+  </div>
+  <div class="wrap foot-bot"><span>© 2026 Moventra. Hak cipta dilindungi.</span><span>Dibuat untuk perjalanan yang tenang.</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="modal" hidden><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle"><h3 id="mTitle"></h3><p id="mBody"></p><div id="mExtra"></div><button class="btn full" id="mClose" type="button">Tutup</button></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>

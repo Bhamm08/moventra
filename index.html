@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moventra – Tiket Pesawat, Kereta, Bus & Kapal</title>
+<meta name="description" content="Pesan tiket pesawat, kereta api, bus, dan kapal ferry dalam satu tempat. Bandingkan harga dan berangkat dengan tenang.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230F9D8A'/%3E%3Cpath d='M14 46V22l18 18 18-18v14' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='46' r='5' fill='%23FF6B4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+    <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+  </symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="logo" aria-label="Moventra beranda">
+      <svg viewBox="0 0 270 64" height="40" role="img" aria-label="Moventra">
+        <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+        <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+        <text x="80" y="43" font-family="'Plus Jakarta Sans','Segoe UI',Arial,sans-serif" font-size="34" font-weight="800" letter-spacing="-1" fill="#14232B">Moventra</text>
+      </svg>
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="index.html" class="on">Beranda</a>
+      <a href="pesan.html">Pesan Tiket</a>
+      <a href="promo.html">Promo</a>
+      <a href="pesanan.html">Pesanan Saya</a>
+      <a href="bantuan.html">Bantuan</a>
+    </nav>
+    <div class="nav-act">
+      <a class="btn coral sm" href="pesan.html">Pesan tiket</a>
+      <button class="btn ghost sm" id="btnLogin">Masuk</button>
+      <button class="btn sm" id="btnRegister">Daftar</button>
+      <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="view" id="view-home">
+  <div class="hero">
+    <svg class="hero-path" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path id="routeLine" d="M-20 340 C 220 340, 260 120, 520 150 S 860 300, 1000 110 S 1160 60, 1240 90" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2" stroke-dasharray="3 10" stroke-linecap="round"/>
+      <circle r="7" fill="#FF6B4A"><animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#routeLine"/></animateMotion></circle>
+      <circle cx="520" cy="150" r="5" fill="#fff"/><circle cx="1000" cy="110" r="5" fill="#fff"/><circle cx="260" cy="232" r="4" fill="#7FE0D0"/>
+    </svg>
+    <div class="wrap hero-in">
+      <h1>Satu tiket, ke mana pun kamu mau pergi.</h1>
+      <p class="lead">Pesawat, kereta, bus, dan kapal ferry. Pilih moda di bawah untuk mulai memesan.</p>
+      <div class="tiles">
+        <a class="tile" href="pesan.html?mode=flight" data-mode="flight"><b>Pesawat</b><small>Domestik dan antar kota</small></a>
+        <a class="tile" href="pesan.html?mode=train" data-mode="train"><b>Kereta Api</b><small>Antar kota di Jawa</small></a>
+        <a class="tile" href="pesan.html?mode=bus" data-mode="bus"><b>Bus & Shuttle</b><small>Perjalanan darat</small></a>
+        <a class="tile" href="pesan.html?mode=ferry" data-mode="ferry"><b>Kapal Ferry</b><small>Bali, Lombok, dan sekitarnya</small></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="wrap sec">
+    <div class="sec-head">
+      <h2>Rute favorit minggu ini</h2>
+      <p>Ketuk salah satu rute untuk melihat jadwal hari ini.</p>
+    </div>
+    <div class="route-grid"></div>
+  </section>
+
+  <section class="wrap">
+    <div class="promo">
+      <div>
+        <h2>Hemat hingga Rp 350.000 untuk perjalanan pertamamu</h2>
+        <p>Masukkan kode di halaman pembayaran. Berlaku untuk semua moda transportasi.</p>
+      </div>
+      <button class="code" data-code="MOVEFIRST" type="button" aria-label="Salin kode promo">
+        <b>MOVEFIRST</b><span>Salin kode</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><h2>Kenapa memesan di Moventra</h2></div>
+    <div class="why">
+      <article><i class="ic">
+        <svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.2 7.6 8 9 4.8-1.4 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></i>
+        <h3>Tiket resmi dan aman</h3><p>Terhubung langsung ke operator. Pembayaran terenkripsi dan e-tiket terbit instan.</p></article>
+      <article><i class="ic">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></i>
+        <h3>Ubah jadwal tanpa ribet</h3><p>Rencana berubah? Reschedule atau refund langsung dari halaman pesanan.</p></article>
+      <article><i class="ic">
+        <svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></i>
+        <h3>Bantuan sepanjang hari</h3><p>Tim kami siap membantu lewat chat atau telepon, kapan pun kamu butuh.</p></article>
+      <article><i class="ic">
+        <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/><circle cx="8" cy="7" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="17" r="2" fill="currentColor"/></svg></i>
+        <h3>Banyak pilihan, satu layar</h3><p>Urutkan dan saring berdasarkan harga, jam berangkat, durasi, dan operator.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><h2>Inspirasi liburan</h2><p>Destinasi yang paling banyak dicari bulan ini.</p></div>
+    <div class="dest" id="destGrid"></div>
+  </section>
+
+  <section class="wrap">
+    <form class="news" id="newsForm">
+      <div><h2>Dapatkan kabar harga tiket turun</h2><p>Kami kirim satu email saat rute favoritmu lebih murah. Tanpa spam.</p></div>
+      <div class="news-f"><input type="email" id="newsMail" placeholder="Alamat email kamu" required aria-label="Alamat email"><button class="btn" type="submit">Beri tahu saya</button></div>
+    </form>
+  </section>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a href="index.html" class="logo"><svg width="36" height="36"><use href="#mark"/></svg><b>Moventra</b></a>
+      <p>Platform pemesanan tiket pesawat, kereta api, bus, dan kapal ferry untuk perjalanan di seluruh Indonesia.</p>
+    </div>
+    <div><h4>Produk</h4><a href="pesan.html">Pesan tiket</a><a href="promo.html">Promo</a><a href="pesanan.html">Pesanan saya</a></div>
+    <div><h4>Bantuan</h4><a href="bantuan.html">Pusat bantuan</a><a href="bantuan.html">Cara memesan</a><a href="pesanan.html">Cek pesanan</a></div>
+    <div><h4>Pembayaran</h4><p class="muted">QRIS, BCA, Mandiri, BNI, BRI, GoPay, OVO, Dana, Visa, Mastercard.</p></div>
+  </div>
+  <div class="wrap foot-bot"><span>© 2026 Moventra. Hak cipta dilindungi.</span><span>Dibuat untuk perjalanan yang tenang.</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="modal" hidden><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle"><h3 id="mTitle"></h3><p id="mBody"></p><div id="mExtra"></div><button class="btn full" id="mClose" type="button">Tutup</button></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data & Pembayaran – Moventra</title>
+<meta name="description" content="Pesan tiket pesawat, kereta api, bus, dan kapal ferry dalam satu tempat. Bandingkan harga dan berangkat dengan tenang.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230F9D8A'/%3E%3Cpath d='M14 46V22l18 18 18-18v14' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='46' r='5' fill='%23FF6B4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="checkout">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 64">
+    <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+    <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+  </symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="logo" aria-label="Moventra beranda">
+      <svg viewBox="0 0 270 64" height="40" role="img" aria-label="Moventra">
+        <rect width="64" height="64" rx="16" fill="#0F9D8A"/>
+        <path d="M14 46V22l18 18 18-18v14" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="46" r="5" fill="#FF6B4A"/>
+        <text x="80" y="43" font-family="'Plus Jakarta Sans','Segoe UI',Arial,sans-serif" font-size="34" font-weight="800" letter-spacing="-1" fill="#14232B">Moventra</text>
+      </svg>
+    </a>
+    <nav class="menu" id="menu" aria-label="Menu utama">
+      <a href="index.html">Beranda</a>
+      <a href="pesan.html" class="on">Pesan Tiket</a>
+      <a href="promo.html">Promo</a>
+      <a href="pesanan.html">Pesanan Saya</a>
+      <a href="bantuan.html">Bantuan</a>
+    </nav>
+    <div class="nav-act">
+      <a class="btn coral sm" href="pesan.html">Pesan tiket</a>
+      <button class="btn ghost sm" id="btnLogin">Masuk</button>
+      <button class="btn sm" id="btnRegister">Daftar</button>
+      <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="view" id="view-checkout">
+  <div class="wrap">
+    <ol class="steps" aria-label="Langkah pemesanan">
+      <li class="done"><span>1</span>Pilih jadwal</li><li class="on"><span>2</span>Data & bayar</li><li><span>3</span>E-tiket</li>
+    </ol>
+  </div>
+  <form class="wrap co-grid" id="coForm" novalidate>
+    <div class="co-main">
+      <section class="card">
+        <h2>Kontak pemesan</h2>
+        <p class="sub">E-tiket dikirim ke kontak ini.</p>
+        <div class="row2">
+          <label class="fld"><span>Nama lengkap</span><input name="name" required placeholder="Sesuai KTP atau paspor" autocomplete="name"></label>
+          <label class="fld"><span>Nomor WhatsApp</span><input name="phone" required inputmode="tel" placeholder="0812xxxxxxxx" autocomplete="tel"></label>
+        </div>
+        <label class="fld"><span>Email</span><input name="email" type="email" required placeholder="nama@email.com" autocomplete="email"></label>
+      </section>
+      <section class="card" id="paxCard"></section>
+      <section class="card">
+        <h2>Tambahan perjalanan</h2>
+        <label class="opt"><input type="checkbox" id="optIns"><span><b>Asuransi perjalanan</b><small>Ganti rugi delay dan kehilangan bagasi.</small></span><em>+Rp 29.500</em></label>
+        <label class="opt"><input type="checkbox" id="optBag"><span><b>Tambah bagasi 10 kg</b><small>Cocok untuk oleh-oleh.</small></span><em>+Rp 120.000</em></label>
+      </section>
+      <section class="card">
+        <h2>Metode pembayaran</h2>
+        <div class="pays" id="pays" role="radiogroup">
+          <button type="button" role="radio" aria-checked="true" class="on" data-p="QRIS">QRIS<small>Bebas biaya</small></button>
+          <button type="button" role="radio" aria-checked="false" data-p="Virtual Account">Virtual Account<small>BCA, Mandiri, BNI</small></button>
+          <button type="button" role="radio" aria-checked="false" data-p="Kartu Kredit">Kartu kredit<small>Visa, Mastercard</small></button>
+          <button type="button" role="radio" aria-checked="false" data-p="E-Wallet">E-wallet<small>GoPay, OVO, Dana</small></button>
+        </div>
+      </section>
+    </div>
+    <aside class="co-side">
+      <div class="card sticky" id="coSummary"></div>
+    </aside>
+  </form>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a href="index.html" class="logo"><svg width="36" height="36"><use href="#mark"/></svg><b>Moventra</b></a>
+      <p>Platform pemesanan tiket pesawat, kereta api, bus, dan kapal ferry untuk perjalanan di seluruh Indonesia.</p>
+    </div>
+    <div><h4>Produk</h4><a href="pesan.html">Pesan tiket</a><a href="promo.html">Promo</a><a href="pesanan.html">Pesanan saya</a></div>
+    <div><h4>Bantuan</h4><a href="bantuan.html">Pusat bantuan</a><a href="bantuan.html">Cara memesan</a><a href="pesanan.html">Cek pesanan</a></div>
+    <div><h4>Pembayaran</h4><p class="muted">QRIS, BCA, Mandiri, BNI, BRI, GoPay, OVO, Dana, Visa, Mastercard.</p></div>
+  </div>
+  <div class="wrap foot-bot"><span>© 2026 Moventra. Hak cipta dilindungi.</span><span>Dibuat untuk perjalanan yang tenang.</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="modal" hidden><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle"><h3 id="mTitle"></h3><p id="mBody"></p><div id="mExtra"></div><button class="btn full" id="mClose" type="button">Tutup</button></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>
