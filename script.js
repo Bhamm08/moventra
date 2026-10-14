@@ -66,36 +66,12 @@ function selectionSort(src, key, asc = true) {          // O(n²)
   }
   console.log('Hasil :', brief(a, key)); console.log(`Selesai → perbandingan: ${cmp}, pertukaran: ${swp}`); console.groupEnd(); return a;
 }
-function insertionSort(src, key, asc = true) {          // O(n²), cepat untuk data hampir urut
-  const a = src.slice(); let cmp = 0, shift = 0;
-  console.group(`%c[SORT] Insertion Sort – ${key} ${asc ? 'naik' : 'turun'} (${a.length} data)`, 'color:#0F9D8A;font-weight:700');
-  for (let i = 1; i < a.length; i++) {
-    const x = a[i]; let j = i - 1;
-    while (j >= 0 && (cmp++, asc ? a[j][key] > x[key] : a[j][key] < x[key])) { a[j + 1] = a[j]; j--; shift++; }
-    a[j + 1] = x;
-    console.log(`Sisip nilai ${x[key]} ke posisi ${j + 1}:`, brief(a.slice(0, i + 1), key));
-  }
-  console.log(`Selesai → perbandingan: ${cmp}, pergeseran: ${shift}`); console.groupEnd(); return a;
-}
-function mergeSort(src, key, asc = true) {              // O(n log n)
-  let cmp = 0; console.group(`%c[SORT] Merge Sort – ${key} ${asc ? 'naik' : 'turun'} (${src.length} data)`, 'color:#0F9D8A;font-weight:700');
-  const rec = (arr, depth) => {
-    if (arr.length < 2) return arr;
-    const mid = arr.length >> 1, L = rec(arr.slice(0, mid), depth + 1), R = rec(arr.slice(mid), depth + 1), out = [];
-    let i = 0, j = 0;
-    while (i < L.length && j < R.length) { cmp++; out.push((asc ? L[i][key] <= R[j][key] : L[i][key] >= R[j][key]) ? L[i++] : R[j++]); }
-    const res = out.concat(L.slice(i), R.slice(j));
-    console.log(`${'  '.repeat(depth)}gabung [${brief(L, key)}] + [${brief(R, key)}] → [${brief(res, key)}]`);
-    return res;
-  };
-  const r = rec(src.slice(), 0); console.log(`Selesai → perbandingan: ${cmp}`); console.groupEnd(); return r;
-}
 const SORTERS = {   // pilihan urutan di UI → algoritma yang dipakai
-  price:     a => bubbleSort(a, 'price', true),
-  priceDesc: a => mergeSort(a, 'price', false),
-  dur:       a => selectionSort(a, 'dur', true),
-  dep:       a => insertionSort(a, 'dep', true),
-  depDesc:   a => mergeSort(a, 'dep', false)
+  price:     a => bubbleSort(a, 'price', true),      // Termurah
+  priceDesc: a => bubbleSort(a, 'price', false),     // Termahal
+  dur:       a => selectionSort(a, 'dur', true),     // Tercepat
+  dep:       a => selectionSort(a, 'dep', true),     // Berangkat awal
+  depDesc:   a => selectionSort(a, 'dep', false)     // Berangkat akhir
 };
 
 /* ---------- C. SEARCHING (log tampil di console) ---------- */
@@ -386,7 +362,7 @@ function showTicket(b) {
 function lookupPNR(e) {
   e.preventDefault(); const q = $('#pnrIn').value.trim().toUpperCase(), err = $('#pnrErr'); current = null;
   if (!q) { err.textContent = 'Masukkan kode booking terlebih dahulu.'; err.hidden = false; return; }
-  const sorted = mergeSort(bookings, 'pnr', true);            // Binary Search butuh data terurut
+  const sorted = selectionSort(bookings, 'pnr', true);            // Binary Search butuh data terurut
   const hit = binarySearch(sorted, q, 'pnr', `kode booking ${q}`);
   if (!hit) { err.textContent = `Kode ${q} tidak ditemukan. Periksa lagi kode di email konfirmasimu.`; err.hidden = false; $('#ticketView').innerHTML = ''; return; }
   err.hidden = true; current = hit; $('#ordList').innerHTML = ''; showTicket(hit);
